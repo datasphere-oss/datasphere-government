@@ -1,4 +1,4 @@
-package com.datasphere.government.dl.controller;
+package com.datasphere.government.datalineage.controller;
 
 
 import org.slf4j.Logger;
@@ -6,9 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.datasphere.government.common.BaseController;
-import com.datasphere.government.dl.common.DBConstant;
-import com.datasphere.government.dl.common.JsonWrapper;
-import com.datasphere.government.dl.service.FileService;
+import com.datasphere.government.datalineage.common.DBConstant;
+import com.datasphere.government.datalineage.common.JsonWrapper;
+import com.datasphere.government.datalineage.service.FileService;
 
 import java.io.IOException;
 import java.io.*;

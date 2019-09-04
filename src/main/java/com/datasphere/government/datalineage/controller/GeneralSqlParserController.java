@@ -1,8 +1,8 @@
-package com.datasphere.government.dl.controller;
+package com.datasphere.government.datalineage.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.datasphere.government.common.BaseController;
-import com.datasphere.government.dl.service.GeneralSqlParserService;
+import com.datasphere.government.datalineage.service.GeneralSqlParserService;
 
 
 import io.reactivex.Single;

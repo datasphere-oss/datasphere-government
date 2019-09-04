@@ -1,10 +1,10 @@
-package com.datasphere.government.dl.controller;
+package com.datasphere.government.datalineage.controller;
 
 import com.datasphere.government.common.BaseController;
-import com.datasphere.government.dl.common.JsonWrapper;
-import com.datasphere.government.dl.service.PostgresService;
-import com.datasphere.government.dl.service.StoredProcedureService;
-import com.datasphere.government.gsp.datalineage.entity.ConnectEntity;
+import com.datasphere.government.datalineage.common.JsonWrapper;
+import com.datasphere.government.datalineage.service.PostgresService;
+import com.datasphere.government.datalineage.service.StoredProcedureService;
+import com.datasphere.government.datalineage.gsp.entity.ConnectEntity;
 
 import java.util.List;
 import java.util.Map;
