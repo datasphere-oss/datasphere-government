@@ -1,4 +1,4 @@
-package com.datasphere.government.dl.dao;
+package com.datasphere.government.datalineage.dao;
 
 public interface StoredProcedureDao {
 
