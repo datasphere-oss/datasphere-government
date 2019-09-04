@@ -1,14 +1,15 @@
-package com.datasphere.government.common.corebase;
+package com.datasphere.government.common;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import com.datasphere.government.common.database.MyBatisSqlSessionFactoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.datasphere.government.common.dbms.MyBatisSqlSessionFactoryService;
 import com.datasphere.government.common.utils.PropertyUtil;
 
-@Singleton
+@Service
 public class BaseService {
-   @Inject
+   @Autowired
    protected MyBatisSqlSessionFactoryService sqlSessionFactoryService;
 
    //数据血缘 - 数据源配置

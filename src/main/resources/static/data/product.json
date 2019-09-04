@@ -1,0 +1,100 @@
+{"nodes": [
+      {"name": "DATALLIANCE"},
+      {"name": "MY_TEST"},
+      {"name": "ID"},
+      {"name": "NAME"},
+      {"name": "AGE"},
+      {"name": "DAAS_TEST"},
+      {"name": "DAAS_TEST.ID"},
+      {"name": "DAAS_TEST.NAME"},
+      {"name": "DAAS_TEST.AGE"},
+
+      {"name": "V_HT_FUNDNAV_ALL"},
+      {"name": "V_HT_FUNDNAV"},
+
+      {"name": "C_PORT_CODE"},
+      {"name": "D_BIZ"},
+      {"name": "N_ID"},
+      {"name": "C_PORT_NAME"},
+      {"name": "N_ZR_NAVA"},
+      {"name": "N_JR_NAVA"},
+      {"name": "N_JR_LJDWJZ"},
+      {"name": "N_JR_LJJZZZL"},
+      {"name": "N_JR_SXSY_KFP"},
+      {"name": "N_JR_SSZB"},
+
+      {"name": "V_HT_FUNDNAV.C_PORT_CODE",
+        "label": {
+
+          "borderColor": "red",
+          "borderWidth": 1,
+          "width": "10%",
+          "rich":{
+            "a": {
+              "color": "#ffffff",
+              "width": "10%",
+              "padding": 0,
+              "borderColor": "red",
+              "borderWidth": 1
+            }
+          }
+        }
+      },
+      {"name": "V_HT_FUNDNAV.D_BIZ"},
+      {"name": "V_HT_FUNDNAV.N_ID"},
+      {"name": "V_HT_FUNDNAV.C_PORT_NAME"},
+      {"name": "V_HT_FUNDNAV.N_ZR_NAVA"},
+      {"name": "V_HT_FUNDNAV.N_JR_NAVA"},
+      {"name": "V_HT_FUNDNAV.N_JR_LJDWJZ"}
+
+   ],
+   "edges": [
+      {"source": "DATALLIANCE", "target": "MY_TEST", "value": 0.1},
+      {"source": "MY_TEST", "target": "ID", "value": 0.01},
+      {"source": "MY_TEST", "target": "NAME", "value": 0.01},
+      {"source": "MY_TEST", "target": "AGE", "value": 0.01},
+
+      {"source": "ID", "target": "DAAS_TEST", "value": 0.01},
+      {"source": "NAME", "target": "DAAS_TEST", "value": 0.01},
+      {"source": "AGE", "target": "DAAS_TEST", "value": 0.01},
+
+      {"source": "DAAS_TEST", "target": "DAAS_TEST.ID", "value": 0.01},
+      {"source": "DAAS_TEST", "target": "DAAS_TEST.NAME", "value": 0.01},
+      {"source": "DAAS_TEST", "target": "DAAS_TEST.AGE", "value": 0.01},
+
+      {"source": "DATALLIANCE", "target": "V_HT_FUNDNAV_ALL", "value": 0.1},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "C_PORT_CODE", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "D_BIZ", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_ID", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "C_PORT_NAME", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_ZR_NAVA", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_JR_NAVA", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_JR_LJDWJZ", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_JR_LJJZZZL", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_JR_SXSY_KFP", "value": 0.01},
+      {"source": "V_HT_FUNDNAV_ALL", "target": "N_JR_SSZB", "value": 0.01},
+
+      {"source": "C_PORT_CODE", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "D_BIZ", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_ID", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "C_PORT_NAME", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_ZR_NAVA", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_JR_NAVA", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_JR_LJDWJZ", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_JR_LJJZZZL", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_JR_SXSY_KFP", "target": "V_HT_FUNDNAV", "value": 0.01},
+      {"source": "N_JR_SSZB", "target": "V_HT_FUNDNAV", "value": 0.01},
+
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.C_PORT_CODE", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.D_BIZ", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_ID", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.C_PORT_NAME", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_ZR_NAVA", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_JR_NAVA", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_JR_LJDWJZ", "value": 0.01},
+
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_JR_LJJZZZL", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_JR_SXSY_KFP", "value": 0.01},
+      {"source": "V_HT_FUNDNAV", "target": "V_HT_FUNDNAV.N_JR_SSZB", "value": 0.01}
+
+   ]}

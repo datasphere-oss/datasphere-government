@@ -1,0 +1,112 @@
+<columnImpactResult>
+  <targetColumn coordinate="36,14" name="RPT_COMPOSITERATING.ID">
+    <linkTable coordinate="14,8;32,8;33,8;34,8" name="ID" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="60,22" name="RPT_COMPOSITERATING.SECUCODE">
+    <sourceColumn clause="select" coordinate="60,22" name="SECUABBR" tableName="PUB_SECURITIESMAIN"/>
+    <sourceColumn clause="assign" coordinate="69,32" name="SECUABBR" tableName="PUB_SECURITIESMAIN"/>
+    <linkTable coordinate="15,8;16,8;17,8" name="SECUCODE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="MONTH" aliasCoordinate="50,30" coordinate="50,14" name="RPT_COMPOSITERATING.MONTH">
+    <sourceColumn clause="select" coordinate="50,25" name="1" tableName="CONSTANT"/>
+    <linkTable coordinate="28,8" name="MONTH" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="AVGPRICE" aliasCoordinate="49,36" coordinate="49,14" name="RPT_COMPOSITERATING.AVGPRICE">
+    <sourceColumn clause="select" coordinate="49,30" name="0" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="85,45" name="2" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="85,34" name="INDEXVAL" tableName="TEXT_PERFORMANCEFORECAST"/>
+    <linkTable coordinate="27,8" name="AVGPRICE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="57,14" name="RPT_COMPOSITERATING.PUBDATE">
+    <sourceColumn clause="select" coordinate="57,14" name="PUBDATE" tableName="TEXT_PERFORMANCEFORECAST"/>
+    <sourceColumn clause="assign" coordinate="82,37" name="PUBDATE" tableName="TEXT_PERFORMANCEFORECAST"/>
+    <linkTable coordinate="35,8" name="PUBDATE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="4,64" name="-3">
+    <sourceColumn clause="select" coordinate="4,65" name="3" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="4,90" name="-6">
+    <sourceColumn clause="select" coordinate="4,91" name="6" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn alias="HIGHESTPRICE" aliasCoordinate="47,40" coordinate="47,14" name="RPT_COMPOSITERATING.HIGHESTPRICE">
+    <sourceColumn clause="select" coordinate="47,34" name="0" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="83,28" name="INDEXVAL" tableName="TEXT_PERFORMANCEFORECAST"/>
+    <linkTable coordinate="25,8" name="HIGHESTPRICE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="NCREASEAGENCYNUM" aliasCoordinate="43,45" coordinate="43,14" name="NVL(A.INCREASEAGENCYNUM, 0)">
+    <sourceColumn clause="select" coordinate="43,39" name="0" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn alias="REDUCEAGENCYNUM" aliasCoordinate="45,43" coordinate="45,14" name="NVL(A.REDUCEAGENCYNUM, 0)">
+    <sourceColumn clause="select" coordinate="45,37" name="0" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="55,14" name="RPT_COMPOSITERATING.ID">
+    <linkTable coordinate="14,8;32,8;33,8;34,8" name="ID" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="58,22" name="SECUCODE">
+    <sourceColumn clause="select" coordinate="58,22" name="SECUCODE" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="assign" coordinate="67,32" name="SECUCODE" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="select" coordinate="58,22" name="SECUCODE" tableName="PUB_SECURITIESMAIN"/>
+  </targetColumn>
+  <targetColumn coordinate="59,22" name="TRADINGCODE">
+    <sourceColumn clause="select" coordinate="59,22" name="TRADINGCODE" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="assign" coordinate="68,32" name="TRADINGCODE" tableName="TEXT_FORECASTRATING"/>
+  </targetColumn>
+  <targetColumn alias="BUYAGENCYNUM" aliasCoordinate="42,40" coordinate="42,14" name="NVL(A.BUYAGENCYNUM, 0)">
+    <sourceColumn clause="select" coordinate="42,34" name="0" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="4,12" name="-1">
+    <sourceColumn clause="select" coordinate="4,13" name="1" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn alias="SELLAGENCYNUM" aliasCoordinate="46,41" coordinate="46,14" name="NVL(A.SELLAGENCYNUM, 0)">
+    <sourceColumn clause="select" coordinate="46,35" name="0" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="37,14" name="A.SECUCODE"/>
+  <targetColumn coordinate="62,33" name="RPT_COMPOSITERATING.BUYAGENCYNUM">
+    <sourceColumn clause="select" coordinate="62,33" name="INVRATINGCODE" orphan="true" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="assign" coordinate="70,30" name="INVRATINGCODE" orphan="true" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="select" coordinate="62,48" name="1" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="42,34;43,39;44,38;45,37;46,35" name="0" tableName="CONSTANT"/>
+    <linkTable coordinate="20,8;21,8;22,8;23,8;24,8" name="BUYAGENCYNUM" tableName="RPT_COMPOSITERATING" type="insert"/>
+    <sourceColumn clause="select" coordinate="63,48" name="2" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="64,48" name="3" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="65,48" name="4" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="66,48" name="5" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="56,14" name="RPT_COMPOSITERATING.ID">
+    <linkTable coordinate="14,8;32,8;33,8;34,8" name="ID" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="LOWESTPRICE" aliasCoordinate="48,39" coordinate="48,14" name="RPT_COMPOSITERATING.LOWESTPRICE">
+    <sourceColumn clause="select" coordinate="48,33" name="0" tableName="CONSTANT"/>
+    <sourceColumn clause="select" coordinate="84,28" name="INDEXVAL" tableName="TEXT_PERFORMANCEFORECAST"/>
+    <linkTable coordinate="26,8" name="LOWESTPRICE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="41,14" name="A.RATINGAGENCYNUM"/>
+  <targetColumn coordinate="52,14" name="RPT_COMPOSITERATING.ENTRYTIME">
+    <linkTable coordinate="29,8;30,8;31,8" name="ENTRYTIME" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="39,14" name="A.SECUABBR"/>
+  <targetColumn coordinate="51,14" name="RPT_COMPOSITERATING.ENTRYTIME">
+    <linkTable coordinate="29,8;30,8;31,8" name="ENTRYTIME" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="4,38" name="-2">
+    <sourceColumn clause="select" coordinate="4,39" name="2" tableName="CONSTANT"/>
+  </targetColumn>
+  <targetColumn coordinate="38,14" name="A.TRADINGCODE"/>
+  <targetColumn coordinate="61,26" name="RPT_COMPOSITERATING.RATINGAGENCYNUM">
+    <sourceColumn clause="select" coordinate="71,36" name="*" tableName="TEXT_FORECASTRATING"/>
+    <sourceColumn clause="select" coordinate="71,36" name="*" tableName="PUB_SECURITIESMAIN"/>
+    <linkTable coordinate="19,8" name="RATINGAGENCYNUM" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="54,14" name="RPT_COMPOSITERATING.ID">
+    <linkTable coordinate="14,8;32,8;33,8;34,8" name="ID" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn coordinate="53,14" name="RPT_COMPOSITERATING.ENTRYTIME">
+    <linkTable coordinate="29,8;30,8;31,8" name="ENTRYTIME" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="STATISTICDATE" aliasCoordinate="40,29" coordinate="40,14" name="RPT_COMPOSITERATING.STATISTICDATE">
+    <linkTable coordinate="18,8" name="STATISTICDATE" tableName="RPT_COMPOSITERATING" type="insert"/>
+  </targetColumn>
+  <targetColumn alias="NEUTRALAGENCYNUM" aliasCoordinate="44,44" coordinate="44,14" name="NVL(A.NEUTRALAGENCYNUM, 0)">
+    <sourceColumn clause="select" coordinate="44,38" name="0" tableName="CONSTANT"/>
+  </targetColumn>
+</columnImpactResult>

@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>神州云联 | 数据血缘分析系统</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/dashboard.css" rel="stylesheet">
+    <link href="./css/app.css" rel="stylesheet">
+    <script src="./js/html5shiv.min.js"></script>
+    <script src="./js/respond.min.js"></script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <span class="navbar-brand">数据血缘分析系统</span>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <ul id="myTab" class="nav nav-tabs">
+            <li><a href="#home" data-toggle="tab">
+                存储过程</a>
+            </li>
+            <li class="active"><a href="#ios" data-toggle="tab">上传文件</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane" id="home">
+                <div class="col-sm-3 col-md-2 sidebar left-menu">
+                    <ul class="nav nav-sidebar" id="storeList">
+                    </ul>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                    <!--<h4 class="page-header">pg_proc</h4>-->
+                    <div class="wrapper">
+                        <div class="mapbox">
+                            <div class="db">
+                                数据库
+                            </div>
+                            <div class="up">
+                                <div class="up-2">
+                                    <div class="mapTitle tTable">上游表</div>
+                                    <div class="mapTitle tField">上游字段</div>
+                                </div>
+                            </div>
+                            <div class="down">
+                                <div class="down-2">
+                                    <div class="mapTitle dTable">下游表</div>
+                                    <div class="mapTitle dField">下游字段</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="mySankey" class="sankey-map" style="width:100%;height:100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane in active" id="ios">
+                <div class="form-div">
+                    <form id="fileForm" name="fileForm" method="post" enctype="multipart/form-data">
+                        <label class="selDbType">
+                            数据库类型：<select name="dbType" id="dbType">
+                            <option value="PostgreSQL">华为MPP</option>
+                            <option value="Greenplum">Greenplum</option>
+                            <option value="Hive">Hive</option>
+                        </select>
+                        </label>
+                        <label>
+                            <input id="file_input" name="file" type="file" class="fileContrl">
+                        </label>
+                        <label>
+                            <input id="upload_btn" type="button" class="btn btn-success up_btn" value="上传"/>
+                        </label>
+                        <label>
+                            <div class="msgBox" id="msgUpload">
+                                上传成功
+                            </div>
+                        </label>
+                    </form>
+                </div>
+                <div class="fileContainer">
+                    <div class="col-sm-3 col-md-2 sidebar left-menu">
+                        <ul class="nav nav-sidebar" id="uploadFileList">
+
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" id="fileEchartContainer"></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/jquery.form.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script>
+
+    //var url = "http://117.107.241.79:8083/";
+    var url = "http://192.168.31.130:8082/";
+
+    $(function () {
+        $('#myTab li:eq(1) a').tab('show');
+
+        //上传文件
+        $("#upload_btn").click(function(){
+
+            var form = $("form[name=fileForm]");
+
+            var options  = {
+                url: url+'datalinkage/file/upload',
+                type:'post',
+                success:function(data){
+                    console.log(data.data);
+
+                    if(data.code < 1){
+                        $("#msgUpload").show();
+
+                        window.setTimeout(function(){
+                            $("#msgUpload").hide();
+                        },3000)
+                    }
+
+                    var dbType = $("#dbType").val();
+
+                    if(data.data != null){
+
+                        loadChartDataByUploadFileFirst(data.data, dbType);
+                        //加载上传的文件列表
+                        loadUploadFileList();
+                    }
+
+                }
+            };
+            form.ajaxSubmit(options);
+        })
+
+        //加载存储过程列表
+        loadStroeList();
+
+        //加载上传文件列表
+        loadUploadFileList();
+
+        $(document).ajaxError(function(event,xhr,options,exc){
+            if (xhr.status == 402) {
+                location.href = "http://localhost:8080/DL-LicenseClientValidate/views/page/validationPage.jsp";
+            }
+        })
+    });
+
+    //加载上传文件列表
+    function loadUploadFileList(){
+
+        $.get(url+'datalinkage/file/listAll', function (data,status,xhr) {
+            var list = "";
+            var data = data.data;
+
+            for(k in data)
+            {
+                data[k].forEach(function(item){
+                    list += "<li><a href='javascript:;' data-type='"+k+"'>"+item+"</a></li>";
+                })
+
+            }
+
+            $("#uploadFileList").html(list);
+            $("#uploadFileList :first").addClass("active");
+            var firstValue = $("#uploadFileList :first a").text();
+            var firstType = $("#uploadFileList :first a").attr("data-type");
+            loadChartDataByUploadFile(firstValue, firstType);
+        })
+    }
+
+    //加载存储过程列表
+    function loadStroeList(){
+        $.get(url+'datalinkage/procedure/listAll', function (data,status,xhr) {
+            var list = "";
+            data.data.forEach(function(item){
+                list += "<li><a href='javascript:;'>"+item+"</a></li>";
+            })
+            $("#storeList").html(list);
+            $("#storeList :first").addClass("active");
+
+            loadChartDataByProName();
+        })
+    }
+
+    //根据选择的存储过程名称加载趋势图
+    function loadChartDataByProName(){
+
+        $("#storeList li").unbind().click(function(){
+
+            var proName = $(this).find("a").html();
+            $(this).addClass("active")
+                .siblings().removeClass("active");
+
+            //初始化echarts实例
+            const myChart = echarts.init(document.getElementById("mySankey"));
+            myChart.showLoading();
+
+            $.ajax(
+                { url: url+"datalinkage/parserByProName",
+                    contentType: "application/json;charset=UTF-8",
+                    type: "POST",
+                    dataType:'json',
+                    data: JSON.stringify({proname:proName}),
+                    success: function(data){
+                        //$(this).addClass("done");
+                        console.log(data);
+
+                        myChart.hideLoading();
+
+                        var data = data[0];
+
+                        if(data.length < 1) {
+
+                            alert("没有数据");
+                            return;
+                        }
+
+                        myChart.setOption(option = {
+                            title: {
+                                //text: 'Sankey Diagram'
+                            },
+                            silent:false,
+                            tooltip: {
+                                trigger: 'item',
+                                triggerOn: 'mousemove'
+
+                            },
+                            series: [
+                                {
+                                    type: 'sankey',
+                                    layout:'none',
+                                    data: data.nodes,
+                                    links: data.edges,
+                                    focusNodeAdjacency: true,
+                                    itemStyle: {
+                                        normal: {
+                                            borderWidth: 1,
+                                            borderColor: '#aaa'
+                                        }
+                                    },
+                                    lineStyle: {
+                                        normal: {
+                                            curveness: 0.5
+                                        }
+                                    }
+                                }
+                            ]
+                        });
+                    }
+                });
+
+        })
+    }
+
+    //动态创建趋势图
+    function createNewEchart(data){
+
+        if(data.length < 1) {
+            $("#fileEchartContainer").html("");
+            alert("没有数据！");
+            retrun ;
+        }
+        var n = 1;
+
+        data.forEach(function(item){
+
+            var str = "<div id='fileSankey"+n+"' class='sankey-map' style='width:100%;height:800px;'></div>";
+
+            $("#fileEchartContainer").append(str);
+
+            renderEcharts(n,item);
+
+            n++;
+        })
+
+    }
+
+    //根据数据渲染图表
+    function renderEcharts(n,data){
+
+        const myChart = echarts.init(document.getElementById("fileSankey"+n));
+        myChart.setOption(option = {
+            title: {
+                //text: 'Sankey Diagram'
+            },
+            silent:false,
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                    type: 'sankey',
+                    layout:'none',
+                    data: data.nodes,
+                    links: data.edges,
+                    focusNodeAdjacency: true,
+                    itemStyle: {
+                        normal: {
+                            borderWidth: 1,
+                            borderColor: '#aaa'
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            curveness: 0.5
+                        }
+                    }
+                }
+            ]
+        });
+    }
+
+    //根据选择上传的文件加载趋势图
+    function loadChartDataByUploadFile(file, dbType){
+
+        $("#uploadFileList li").unbind().click(function() {
+
+            var fileName = $(this).find("a").html();
+            var fileType = $(this).find("a").attr("data-type");
+            $(this).addClass("active")
+                .siblings().removeClass("active");
+
+            loadChartDataByUploadFileFirst(fileName, fileType);
+        })
+
+    }
+
+    function loadChartDataByUploadFileFirst(fileName, fileType){
+
+        $.ajax(
+            {
+                url: url + "datalinkage/parserMoreByFileName",
+                contentType: "application/json;charset=UTF-8",
+                type: "POST",
+                dataType: 'json',
+                data: JSON.stringify(
+                    {
+                        "fileName": fileName,
+                        "dbType": fileType
+                    }
+                ),
+                success: function (data) {
+                    console.log(data);
+                    createNewEchart(data);
+                }
+            });
+    }
+</script>
+</body>
+</html>

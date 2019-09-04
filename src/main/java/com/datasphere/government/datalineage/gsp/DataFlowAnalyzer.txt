@@ -1,0 +1,281 @@
+create procedure proc_update_compositerating as
+  cur_month number;
+  cursor cur is
+    select -1 from dual union select -2 from dual union select -3 from dual union select -6 from dual;
+begin
+  execute immediate 'delete from rpt_compositerating';
+  open cur;
+  loop
+    fetch cur
+      into cur_month;
+    exit when cur%notfound;
+
+    insert into rpt_compositerating
+      (id,
+       secucode,
+       tradingcode,
+       secuabbr,
+       statisticdate,
+       ratingagencynum,
+       buyagencynum,
+       increaseagencynum,
+       neutralagencynum,
+       reduceagencynum,
+       sellagencynum,
+       highestprice,
+       lowestprice,
+       avgprice,
+       month,
+       entrytime,
+       updatetime,
+       groundtime,
+       updateid,
+       resourceid,
+       recordid,
+       pubdate)
+      select seq_id.nextval,
+             a.secucode,
+             a.tradingcode,
+             a.secuabbr,
+             trunc(sysdate) statisticdate,
+             a.ratingagencynum,
+             nvl(a.buyagencynum, 0) as buyagencynum,
+             nvl(a.increaseagencynum, 0) as ncreaseagencynum,
+             nvl(a.neutralagencynum, 0) as neutralagencynum,
+             nvl(a.reduceagencynum, 0) as reduceagencynum,
+             nvl(a.sellagencynum, 0) as sellagencynum,
+             nvl(b.highestprice, 0) as highestprice,
+             nvl(b.lowestprice, 0) as lowestprice,
+             nvl(b.avgprice, 0) as avgprice,
+             cur_month*-1 as month,
+             sysdate,
+             sysdate,
+             sysdate,
+             seq_id.nextval,
+             seq_id.nextval,
+             seq_id.nextval,
+             pubdate
+        from (select secucode,
+                     tradingcode,
+                     secuabbr,
+                     sum(c) ratingagencynum,
+                     sum(decode(invratingcode, 1, c)) buyagencynum,
+                     sum(decode(invratingcode, 2, c)) increaseagencynum,
+                     sum(decode(invratingcode, 3, c)) neutralagencynum,
+                     sum(decode(invratingcode, 4, c)) reduceagencynum,
+                     sum(decode(invratingcode, 5, c)) sellagencynum
+                from (select a.secucode,
+                             a.tradingcode,
+                             b.secuabbr,
+                             invratingcode,
+                             count(*) c
+                        from text_forecastrating a
+                        join pub_securitiesmain b on a.secucode = b.secucode
+                       where trunc(pubdate) >= add_months(trunc(sysdate), cur_month)
+                         and a.secucode != 0
+                         and invratingcode in (1, 2, 3, 4, 5)
+                       group by a.secucode,
+                                a.tradingcode,
+                                b.secuabbr,
+                                invratingcode)
+               group by secucode, tradingcode, secuabbr) a,
+             (select secucode,max(t.pubdate) as pubdate,
+                     max(t.indexval) highestprice,
+                     min(t.indexval) lowestprice,
+                     trunc(avg(t.indexval), 2) avgprice
+                from text_performanceforecast t
+               where t.pubdate > add_months(trunc(sysdate), cur_month)
+                 and t.indexcode = 1190
+               group by secucode) b
+       where a.secucode = b.secucode(+);
+
+  end loop;
+  close cur;
+  commit;
+end proc_update_compositerating;
+
+===><dlineage>
+   <relation id="142" type="dataflow">
+      <target coordinate="[15,8],[15,16]" column="SECUCODE" id="74" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+   </relation>
+   <relation id="143" type="dataflow">
+      <target coordinate="[16,8],[16,19]" column="TRADINGCODE" id="75" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+   </relation>
+   <relation id="144" type="dataflow">
+      <target coordinate="[17,8],[17,16]" column="SECUABBR" id="76" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="146" type="dataflow">
+      <target coordinate="[19,8],[19,23]" column="RATINGAGENCYNUM" id="78" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="147" type="dataflow">
+      <target coordinate="[20,8],[20,20]" column="BUYAGENCYNUM" id="79" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="148" type="dataflow">
+      <target coordinate="[21,8],[21,25]" column="INCREASEAGENCYNUM" id="80" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="149" type="dataflow">
+      <target coordinate="[22,8],[22,24]" column="NEUTRALAGENCYNUM" id="81" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="150" type="dataflow">
+      <target coordinate="[23,8],[23,23]" column="REDUCEAGENCYNUM" id="82" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="151" type="dataflow">
+      <target coordinate="[24,8],[24,21]" column="SELLAGENCYNUM" id="83" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[67,30],[67,40]" column="SECUCODE" id="9" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[68,30],[68,43]" column="TRADINGCODE" id="10" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[70,30],[70,43]" column="INVRATINGCODE" id="11" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[73,54],[73,64]" column="SECUCODE" id="8" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[74,36],[74,43]" column="PUBDATE" id="12" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[75,30],[75,40]" column="SECUCODE" id="13" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[76,30],[76,43]" column="INVRATINGCODE" id="14" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[77,33],[77,43]" column="SECUCODE" id="15" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[78,33],[78,46]" column="TRADINGCODE" id="16" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[80,33],[80,46]" column="INVRATINGCODE" id="17" parent_id="11" parent_name="TEXT_FORECASTRATING"/>
+      <source coordinate="[69,30],[69,40]" column="SECUABBR" id="19" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[73,67],[73,77]" column="SECUCODE" id="18" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+      <source coordinate="[79,33],[79,43]" column="SECUABBR" id="20" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="152" type="dataflow">
+      <target coordinate="[25,8],[25,20]" column="HIGHESTPRICE" id="84" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[47,18],[47,32]" column="HIGHESTPRICE" id="59" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="153" type="dataflow">
+      <target coordinate="[26,8],[26,19]" column="LOWESTPRICE" id="85" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[48,18],[48,31]" column="LOWESTPRICE" id="61" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="154" type="dataflow">
+      <target coordinate="[27,8],[27,16]" column="AVGPRICE" id="86" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[49,18],[49,28]" column="AVGPRICE" id="63" parent_id="12" parent_name="PUB_SECURITIESMAIN"/>
+   </relation>
+   <relation id="162" type="dataflow">
+      <target coordinate="[35,8],[35,15]" column="PUBDATE" id="94" parent_id="8" parent_name="RPT_COMPOSITERATING"/>
+      <source coordinate="[82,35],[82,44]" column="PUBDATE" id="36" parent_id="14" parent_name="TEXT_PERFORMANCEFORECAST"/>
+   </relation>
+   <table name="RPT_COMPOSITERATING" id="8" type="table" coordinate="[13,17],[13,36]">
+      <column name="ID" id="73" coordinate="[14,8],[14,10]"/>
+      <column name="SECUCODE" id="74" coordinate="[15,8],[15,16]"/>
+      <column name="TRADINGCODE" id="75" coordinate="[16,8],[16,19]"/>
+      <column name="SECUABBR" id="76" coordinate="[17,8],[17,16]"/>
+      <column name="STATISTICDATE" id="77" coordinate="[18,8],[18,21]"/>
+      <column name="RATINGAGENCYNUM" id="78" coordinate="[19,8],[19,23]"/>
+      <column name="BUYAGENCYNUM" id="79" coordinate="[20,8],[20,20]"/>
+      <column name="INCREASEAGENCYNUM" id="80" coordinate="[21,8],[21,25]"/>
+      <column name="NEUTRALAGENCYNUM" id="81" coordinate="[22,8],[22,24]"/>
+      <column name="REDUCEAGENCYNUM" id="82" coordinate="[23,8],[23,23]"/>
+      <column name="SELLAGENCYNUM" id="83" coordinate="[24,8],[24,21]"/>
+      <column name="HIGHESTPRICE" id="84" coordinate="[25,8],[25,20]"/>
+      <column name="LOWESTPRICE" id="85" coordinate="[26,8],[26,19]"/>
+      <column name="AVGPRICE" id="86" coordinate="[27,8],[27,16]"/>
+      <column name="MONTH" id="87" coordinate="[28,8],[28,13]"/>
+      <column name="ENTRYTIME" id="88" coordinate="[29,8],[29,17]"/>
+      <column name="UPDATETIME" id="89" coordinate="[30,8],[30,18]"/>
+      <column name="GROUNDTIME" id="90" coordinate="[31,8],[31,18]"/>
+      <column name="UPDATEID" id="91" coordinate="[32,8],[32,16]"/>
+      <column name="RESOURCEID" id="92" coordinate="[33,8],[33,18]"/>
+      <column name="RECORDID" id="93" coordinate="[34,8],[34,16]"/>
+      <column name="PUBDATE" id="94" coordinate="[35,8],[35,15]"/>
+   </table>
+   <table name="TEXT_FORECASTRATING" id="11" type="table" coordinate="[72,30],[72,51]" alias="A">
+      <column name="SECUCODE" id="8" coordinate="[73,54],[73,64]"/>
+      <column name="SECUCODE" id="9" coordinate="[67,30],[67,40]"/>
+      <column name="TRADINGCODE" id="10" coordinate="[68,30],[68,43]"/>
+      <column name="INVRATINGCODE" id="11" coordinate="[70,30],[70,43]"/>
+      <column name="PUBDATE" id="12" coordinate="[74,36],[74,43]"/>
+      <column name="SECUCODE" id="13" coordinate="[75,30],[75,40]"/>
+      <column name="INVRATINGCODE" id="14" coordinate="[76,30],[76,43]"/>
+      <column name="SECUCODE" id="15" coordinate="[77,33],[77,43]"/>
+      <column name="TRADINGCODE" id="16" coordinate="[78,33],[78,46]"/>
+      <column name="INVRATINGCODE" id="17" coordinate="[80,33],[80,46]"/>
+   </table>
+   <table name="PUB_SECURITIESMAIN" id="12" type="table" coordinate="[73,30],[73,50]" alias="B">
+      <column name="SECUCODE" id="18" coordinate="[73,67],[73,77]"/>
+      <column name="SECUABBR" id="19" coordinate="[69,30],[69,40]"/>
+      <column name="SECUABBR" id="20" coordinate="[79,33],[79,43]"/>
+      <column name="HIGHESTPRICE" id="59" coordinate="[47,18],[47,32]"/>
+      <column name="LOWESTPRICE" id="61" coordinate="[48,18],[48,31]"/>
+      <column name="AVGPRICE" id="63" coordinate="[49,18],[49,28]"/>
+      <column name="SECUCODE" id="72" coordinate="[90,27],[90,37]"/>
+   </table>
+   <table name="TEXT_PERFORMANCEFORECAST" id="14" type="table" coordinate="[86,22],[86,48]" alias="T">
+      <column name="SECUCODE" id="35" coordinate="[82,22],[82,30]"/>
+      <column name="PUBDATE" id="36" coordinate="[82,35],[82,44]"/>
+      <column name="INDEXVAL" id="37" coordinate="[83,26],[83,36]"/>
+      <column name="INDEXVAL" id="38" coordinate="[84,26],[84,36]"/>
+      <column name="INDEXVAL" id="39" coordinate="[85,32],[85,42]"/>
+      <column name="PUBDATE" id="40" coordinate="[87,22],[87,31]"/>
+      <column name="INDEXCODE" id="41" coordinate="[88,22],[88,33]"/>
+   </table>
+</dlineage>
