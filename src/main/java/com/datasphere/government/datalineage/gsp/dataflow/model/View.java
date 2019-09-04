@@ -7,7 +7,7 @@ import gudusoft.gsqlparser.stmt.TCreateViewSqlStatement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.datasphere.government.gsp.datalineage.util.Pair;
+import com.datasphere.government.datalineage.gsp.util.Pair;
 
 public class View
 {
