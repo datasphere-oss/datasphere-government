@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.dl.column;
+package com.datasphere.government.datalineage.gsp.dl.column;
 
 import gudusoft.gsqlparser.*;
 import gudusoft.gsqlparser.nodes.TObjectName;
@@ -11,8 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
-import com.datasphere.government.gsp.dl.columnImpact.ColumnImpact;
-import com.datasphere.government.gsp.dl.columnImpact.ColumnImpact.TColumn;
+import com.datasphere.government.datalineage.gsp.dl.columnImpact.ColumnImpact;
+import com.datasphere.government.datalineage.gsp.dl.columnImpact.ColumnImpact.TColumn;
 
 public class ColumnAnalyze {
 
