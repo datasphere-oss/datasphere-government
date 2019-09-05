@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.dl.stmttables;
+package com.datasphere.government.datalineage.gsp.dl.stmttables;
 
 
 import gudusoft.gsqlparser.*;
