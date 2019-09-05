@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.dl.columnImpact;
+package com.datasphere.government.datalineage.gsp.dl.columnImpact;
 
 
 import gudusoft.gsqlparser.*;
