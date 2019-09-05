@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage;
+package com.datasphere.government.datalineage.gsp;
 
 import gudusoft.gsqlparser.EDbVendor;
 
