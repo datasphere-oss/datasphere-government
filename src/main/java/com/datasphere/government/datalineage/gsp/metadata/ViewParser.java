@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.metadata;
+package com.datasphere.government.datalineage.gsp.metadata;
 
 import gudusoft.gsqlparser.EDbVendor;
 import gudusoft.gsqlparser.ESetOperatorType;
@@ -23,13 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.datasphere.government.gsp.datalineage.columnImpact.ColumnImpact;
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.TableMetaData;
-import com.datasphere.government.gsp.datalineage.model.view.ColumnImpactModel;
-import com.datasphere.government.gsp.datalineage.model.view.ColumnModel;
-import com.datasphere.government.gsp.datalineage.model.view.ReferenceModel;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.columnImpact.ColumnImpact;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.TableMetaData;
+import com.datasphere.government.datalineage.gsp.model.view.ColumnImpactModel;
+import com.datasphere.government.datalineage.gsp.model.view.ColumnModel;
+import com.datasphere.government.datalineage.gsp.model.view.ReferenceModel;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 public class ViewParser
 {
