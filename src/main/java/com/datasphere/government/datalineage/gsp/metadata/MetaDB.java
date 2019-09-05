@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.TableMetaData;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.TableMetaData;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 public class MetaDB implements IMetaDatabase {
 
