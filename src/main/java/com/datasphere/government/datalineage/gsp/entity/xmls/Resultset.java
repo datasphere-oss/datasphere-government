@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.entity.xmls;
+package com.datasphere.government.datalineage.gsp.entity.xmls;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
