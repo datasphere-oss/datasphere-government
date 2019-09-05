@@ -1,11 +1,11 @@
 
-package com.datasphere.government.gsp.datalineage.model.metadata;
+package com.datasphere.government.datalineage.gsp.model.metadata;
 
 import gudusoft.gsqlparser.EDbVendor;
 
 import java.util.LinkedHashMap;
 
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 public class ProcedureMetaData extends LinkedHashMap<String, Object>
 {

@@ -1,11 +1,11 @@
 
-package com.datasphere.government.gsp.datalineage.model.metadata;
+package com.datasphere.government.datalineage.gsp.model.metadata;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 @SuppressWarnings("serial")
 public class ColumnMetaData extends LinkedHashMap<String, Object>

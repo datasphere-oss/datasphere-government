@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.model.metadata;
+package com.datasphere.government.datalineage.gsp.model.metadata;
 
 import gudusoft.gsqlparser.EDbVendor;
 
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.foreignKey;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.index;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.unique;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.foreignKey;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.index;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.unique;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 @SuppressWarnings("serial")
 public class TableMetaData extends HashMap<String, Object>
