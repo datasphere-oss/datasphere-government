@@ -4,9 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 import lombok.Data;
 
-/**
- * Created by jeq 27.
- */
+
 @Data
 @XStreamAlias("source")
 public class Source {

@@ -7,9 +7,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * Created by jeq 27.
- */
+
 @Data
 @XStreamAlias("table")
 public class Table {

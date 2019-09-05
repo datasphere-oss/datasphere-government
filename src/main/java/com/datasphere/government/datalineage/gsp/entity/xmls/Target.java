@@ -8,9 +8,7 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * Created by jeq 27.
- */
+
 @Data
 @XStreamAlias("target") // 对应 target
 public class Target {
