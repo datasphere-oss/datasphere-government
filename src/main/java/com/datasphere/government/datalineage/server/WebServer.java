@@ -1,4 +1,4 @@
-package com.datasphere.government.dl.server;
+package com.datasphere.government.datalineage.server;
 
 import javax.servlet.Servlet;
 import javax.servlet.http.HttpServlet;
