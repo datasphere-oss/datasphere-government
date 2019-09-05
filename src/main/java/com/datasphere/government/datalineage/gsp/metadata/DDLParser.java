@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.metadata;
+package com.datasphere.government.datalineage.gsp.metadata;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,22 +8,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.datasphere.government.gsp.datalineage.columnImpact.ColumnImpact;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.foreignKey;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.index;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.indexColumn;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.reference;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.unique;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.uniqueColumn;
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.ProcedureMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.TableMetaData;
-import com.datasphere.government.gsp.datalineage.model.view.ColumnImpactModel;
-import com.datasphere.government.gsp.datalineage.model.view.ColumnModel;
-import com.datasphere.government.gsp.datalineage.model.view.ReferenceModel;
-import com.datasphere.government.gsp.datalineage.model.xml.procedureImpactResult;
-import com.datasphere.government.gsp.datalineage.util.Pair;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.columnImpact.ColumnImpact;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.foreignKey;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.index;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.indexColumn;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.reference;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.unique;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.uniqueColumn;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.ProcedureMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.TableMetaData;
+import com.datasphere.government.datalineage.gsp.model.view.ColumnImpactModel;
+import com.datasphere.government.datalineage.gsp.model.view.ColumnModel;
+import com.datasphere.government.datalineage.gsp.model.view.ReferenceModel;
+import com.datasphere.government.datalineage.gsp.model.xml.procedureImpactResult;
+import com.datasphere.government.datalineage.gsp.util.Pair;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
 
 import gudusoft.gsqlparser.EDbVendor;
 import gudusoft.gsqlparser.EExpressionType;
