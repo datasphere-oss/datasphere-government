@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.model.view;
+package com.datasphere.government.datalineage.gsp.model.view;
 
 import java.awt.Point;
 
