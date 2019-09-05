@@ -5,9 +5,7 @@ import lombok.Data;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by jeq
- */
+
 @Data
 public class ParseResult {
 
