@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.dl.table;
+package com.datasphere.government.datalineage.gsp.dl.table;
 
 import gudusoft.gsqlparser.*;
 import gudusoft.gsqlparser.nodes.*;
