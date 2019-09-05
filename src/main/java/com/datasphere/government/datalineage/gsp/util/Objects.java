@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.util;
+package com.datasphere.government.datalineage.gsp.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.util;
+package com.datasphere.government.datalineage.gsp.util;
 
 /**
  * Container to ease passing around a tuple of two objects. This object provides
