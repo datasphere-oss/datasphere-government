@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.model.ddl.schema;
+package com.datasphere.government.datalineage.gsp.model.ddl.schema;
 
 import org.simpleframework.xml.Attribute;
 
