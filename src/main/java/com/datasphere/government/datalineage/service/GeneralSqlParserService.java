@@ -1,4 +1,4 @@
-package com.datasphere.government.dl.service;
+package com.datasphere.government.datalineage.service;
 
 import gudusoft.gsqlparser.EDbVendor;
 import org.json.JSONArray;
@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.datasphere.government.common.BaseService;
-import com.datasphere.government.dl.common.DBConstant;
-import com.datasphere.government.dl.common.JsonWrapper;
-import com.datasphere.government.dl.test.DemoData;
-import com.datasphere.government.gsp.datalineage.ParseLineage;
-import com.datasphere.government.gsp.datalineage.entity.*;
+import com.datasphere.government.datalineage.common.DBConstant;
+import com.datasphere.government.datalineage.common.JsonWrapper;
+import com.datasphere.government.datalineage.test.DemoData;
+import com.datasphere.government.datalineage.gsp.ParseLineage;
+import com.datasphere.government.datalineage.gsp.entity.*;
 
 import java.io.BufferedReader;
 import java.io.File;

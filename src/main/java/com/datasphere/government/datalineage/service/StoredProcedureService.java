@@ -1,8 +1,8 @@
-package com.datasphere.government.dl.service;
+package com.datasphere.government.datalineage.service;
 
 import com.datasphere.government.common.BaseService;
-import com.datasphere.government.dl.common.DBConstant;
-import com.datasphere.government.gsp.datalineage.entity.ConnectEntity;
+import com.datasphere.government.datalineage.common.DBConstant;
+import com.datasphere.government.datalineage.gsp.entity.ConnectEntity;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.datasphere.government.dl.service;
+package com.datasphere.government.datalineage.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.datasphere.government.common.BaseService;
-import com.datasphere.government.dl.common.DBConstant;
+import com.datasphere.government.datalineage.common.DBConstant;
 
 import java.sql.*;
 import java.util.ArrayList;

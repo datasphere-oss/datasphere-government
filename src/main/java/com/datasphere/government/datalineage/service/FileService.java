@@ -1,4 +1,4 @@
-package com.datasphere.government.dl.service;
+package com.datasphere.government.datalineage.service;
 
 import com.datasphere.government.common.BaseService;
 
