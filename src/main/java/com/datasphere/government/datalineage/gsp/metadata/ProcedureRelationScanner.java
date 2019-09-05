@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.metadata;
+package com.datasphere.government.datalineage.gsp.metadata;
 
 import gudusoft.gsqlparser.EDbVendor;
 import gudusoft.gsqlparser.TCustomSqlStatement;
