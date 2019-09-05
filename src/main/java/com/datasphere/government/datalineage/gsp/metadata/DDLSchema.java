@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage.metadata;
+package com.datasphere.government.datalineage.gsp.metadata;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +15,11 @@ import java.util.Map;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.column;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.database;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.table;
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.TableMetaData;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.column;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.database;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.table;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.TableMetaData;
 
 public class DDLSchema
 {
