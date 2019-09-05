@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.model.xml;
+package com.datasphere.government.datalineage.gsp.model.xml;
 
 import java.util.List;
 
