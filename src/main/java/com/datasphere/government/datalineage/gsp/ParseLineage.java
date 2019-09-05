@@ -1,10 +1,10 @@
-package com.datasphere.government.gsp.datalineage;
+package com.datasphere.government.datalineage.gsp;
 
-import com.datasphere.government.gsp.datalineage.Connection.GreenplumUtils;
-import com.datasphere.government.gsp.datalineage.Connection.MysqlUtils;
-import com.datasphere.government.gsp.datalineage.Connection.OracleUtils;
-import com.datasphere.government.gsp.datalineage.entity.*;
-import com.datasphere.government.gsp.datalineage.entity.xmls.*;
+import com.datasphere.government.datalineage.gsp.Connection.GreenplumUtils;
+import com.datasphere.government.datalineage.gsp.Connection.MysqlUtils;
+import com.datasphere.government.datalineage.gsp.Connection.OracleUtils;
+import com.datasphere.government.datalineage.gsp.entity.*;
+import com.datasphere.government.datalineage.gsp.entity.xmls.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import com.thoughtworks.xstream.security.AnyTypePermission;
@@ -18,9 +18,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-/**
- * Created by jeq 27.
- */
+
 public class ParseLineage {
     private static final Logger logger = LoggerFactory.getLogger(ParseLineage.class);
 
