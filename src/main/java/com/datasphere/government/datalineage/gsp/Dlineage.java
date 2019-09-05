@@ -1,5 +1,5 @@
 
-package com.datasphere.government.gsp.datalineage;
+package com.datasphere.government.datalineage.gsp;
 
 import gudusoft.gsqlparser.EDbVendor;
 //创建SQL Parser所必需的类以及SQL Parser在内部用于处理不同SQL方言的类
@@ -22,22 +22,22 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.datasphere.government.gsp.datalineage.columnImpact.ColumnImpact;
-import com.datasphere.government.gsp.datalineage.metadata.DDLParser;
-import com.datasphere.government.gsp.datalineage.metadata.DDLSchema;
-import com.datasphere.government.gsp.datalineage.metadata.ProcedureRelationScanner;
-import com.datasphere.government.gsp.datalineage.metadata.ViewParser;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.database;
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.MetaScanner;
-import com.datasphere.government.gsp.datalineage.model.metadata.ProcedureMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.TableMetaData;
-import com.datasphere.government.gsp.datalineage.model.xml.columnImpactResult;
-import com.datasphere.government.gsp.datalineage.model.xml.procedureImpactResult;
-import com.datasphere.government.gsp.datalineage.util.Pair;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
-import com.datasphere.government.gsp.datalineage.util.XML2Model;
-import com.datasphere.government.gsp.datalineage.util.XMLUtil;
+import com.datasphere.government.datalineage.gsp.columnImpact.ColumnImpact;
+import com.datasphere.government.datalineage.gsp.metadata.DDLParser;
+import com.datasphere.government.datalineage.gsp.metadata.DDLSchema;
+import com.datasphere.government.datalineage.gsp.metadata.ProcedureRelationScanner;
+import com.datasphere.government.datalineage.gsp.metadata.ViewParser;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.database;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.MetaScanner;
+import com.datasphere.government.datalineage.gsp.model.metadata.ProcedureMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.TableMetaData;
+import com.datasphere.government.datalineage.gsp.model.xml.columnImpactResult;
+import com.datasphere.government.datalineage.gsp.model.xml.procedureImpactResult;
+import com.datasphere.government.datalineage.gsp.util.Pair;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.util.XML2Model;
+import com.datasphere.government.datalineage.gsp.util.XMLUtil;
 
 public class Dlineage
 {
