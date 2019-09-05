@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.entity;
+package com.datasphere.government.datalineage.gsp.entity;
 
 import lombok.Data;
 

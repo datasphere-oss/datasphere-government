@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage.entity;
+package com.datasphere.government.datalineage.gsp.entity;
 
 import lombok.Data;
 
@@ -10,6 +10,7 @@ import java.util.List;
  * 自定义血缘格式
  * java和scala混合语言的时候，需要手动书写getter和setter方法，不然会出现问题
  */
+
 @Data
 public class LineageParseResult extends ParseResult implements Serializable {
     private Long userId;

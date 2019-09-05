@@ -1,10 +1,8 @@
-package com.datasphere.government.gsp.datalineage.entity;
+package com.datasphere.government.datalineage.gsp.entity;
 
 import lombok.Data;
 
-/**
- * Created by jeq 5.
- */
+
 @Data
 public class Entity {
     private String database;
