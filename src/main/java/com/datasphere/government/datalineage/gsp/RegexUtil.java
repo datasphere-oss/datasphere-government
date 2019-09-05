@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.datalineage;
+package com.datasphere.government.datalineage.gsp;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,9 +7,7 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by jeq 23.
- */
+
 public class RegexUtil {
     public RegexUtil() {
     }
