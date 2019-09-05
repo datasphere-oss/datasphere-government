@@ -1,4 +1,4 @@
-package com.datasphere.government.gsp.dl.columndetail;
+package com.datasphere.government.datalineage.gsp.dl.columndetail;
 
 import java.util.HashMap;
 
