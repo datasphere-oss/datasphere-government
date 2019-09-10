@@ -1,4 +1,4 @@
-package com.datasphere.government.utils;
+package com.datasphere.government.datalineage.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
