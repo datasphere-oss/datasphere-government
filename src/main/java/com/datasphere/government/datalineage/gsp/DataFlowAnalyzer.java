@@ -9,13 +9,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import com.datasphere.government.datalineage.gsp.dataflow.model.QueryTableRelationElement;
-import com.datasphere.government.gsp.datalineage.dataflow.listener.DataFlowHandleListener;
-import com.datasphere.government.gsp.datalineage.dataflow.model.*;
-import com.datasphere.government.gsp.datalineage.dataflow.model.xml.*;
-import com.datasphere.government.gsp.datalineage.util.Pair;
-import com.datasphere.government.gsp.datalineage.util.SQLUtil;
-import com.datasphere.government.gsp.datalineage.util.XML2Model;
-import com.datasphere.government.gsp.datalineage.util.XMLUtil;
+import com.datasphere.government.datalineage.gsp.dataflow.listener.DataFlowHandleListener;
+import com.datasphere.government.datalineage.gsp.dataflow.model.*;
+import com.datasphere.government.datalineage.gsp.dataflow.model.xml.*;
+import com.datasphere.government.datalineage.gsp.util.Pair;
+import com.datasphere.government.datalineage.gsp.util.SQLUtil;
+import com.datasphere.government.datalineage.gsp.util.XML2Model;
+import com.datasphere.government.datalineage.gsp.util.XMLUtil;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
