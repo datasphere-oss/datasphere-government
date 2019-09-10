@@ -23,20 +23,20 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.column;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.database;
-import com.datasphere.government.gsp.datalineage.model.ddl.schema.table;
-import com.datasphere.government.gsp.datalineage.model.metadata.ColumnMetaData;
-import com.datasphere.government.gsp.datalineage.model.metadata.MetaScanner;
-import com.datasphere.government.gsp.datalineage.model.metadata.ProcedureMetaData;
-import com.datasphere.government.gsp.datalineage.model.xml.columnImpactResult;
-import com.datasphere.government.gsp.datalineage.model.xml.linkTable;
-import com.datasphere.government.gsp.datalineage.model.xml.sourceColumn;
-import com.datasphere.government.gsp.datalineage.model.xml.sourceProcedure;
-import com.datasphere.government.gsp.datalineage.model.xml.targetColumn;
-import com.datasphere.government.gsp.datalineage.model.xml.targetProcedure;
-import com.datasphere.government.gsp.datalineage.util.XML2Model;
-import com.datasphere.government.gsp.datalineage.util.XMLUtil;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.column;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.database;
+import com.datasphere.government.datalineage.gsp.model.ddl.schema.table;
+import com.datasphere.government.datalineage.gsp.model.metadata.ColumnMetaData;
+import com.datasphere.government.datalineage.gsp.model.metadata.MetaScanner;
+import com.datasphere.government.datalineage.gsp.model.metadata.ProcedureMetaData;
+import com.datasphere.government.datalineage.gsp.model.xml.columnImpactResult;
+import com.datasphere.government.datalineage.gsp.model.xml.linkTable;
+import com.datasphere.government.datalineage.gsp.model.xml.sourceColumn;
+import com.datasphere.government.datalineage.gsp.model.xml.sourceProcedure;
+import com.datasphere.government.datalineage.gsp.model.xml.targetColumn;
+import com.datasphere.government.datalineage.gsp.model.xml.targetProcedure;
+import com.datasphere.government.datalineage.gsp.util.XML2Model;
+import com.datasphere.government.datalineage.gsp.util.XMLUtil;
 
 public class DlineageRelation
 {
