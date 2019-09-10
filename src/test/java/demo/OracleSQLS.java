@@ -1,12 +1,8 @@
 package demo;
 
-/**
- * Created by jeq 28.
- */
+
 public class OracleSQLS {
-    public static void main(String[] args) {
-        System.out.println(aaa);
-    }
+  
     public  static  String ORACLE_SQL1 = "create PROCEDURE PROC_UPDATE_COMPOSITERATING AS\n" +
             "  CUR_MONTH NUMBER;\n" +
             "  CURSOR CUR IS\n" +
