@@ -1,4 +1,4 @@
-package com.datasphere.government.utils;
+package com.datasphere.government.datalineage.utils;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
