@@ -1,18 +1,17 @@
-package com.datasphere.government.run;
+package com.datasphere.government.datalineage.run;
 
-import io.micronaut.runtime.Micronaut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.datasphere.government.common.utils.PropertyUtil;
-import com.datasphere.government.dl.server.WebServer;
+import com.datasphere.government.datalineage.server.WebServer;
 
 public class Application {
   private static Logger log = LoggerFactory.getLogger(Application.class);
 
   public static void main(String ...args) {
     log.info("[数据血缘分析平台-DataLinkage-backend]正在启动 ......");
-    Micronaut.run(Application.class);
+//    Micronaut.run(Application.class);
     log.info("[数据血缘分析平台-DataLinkage-frontend]正在启动 ......");
     String jettyPort = PropertyUtil.getProperty("jetty.config.httpPort");
     WebServer server = new WebServer(Integer.parseInt(jettyPort));
