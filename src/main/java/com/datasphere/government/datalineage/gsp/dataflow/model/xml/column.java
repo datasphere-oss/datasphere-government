@@ -14,7 +14,7 @@ package com.datasphere.government.datalineage.gsp.dataflow.model.xml;
 
 import org.simpleframework.xml.Attribute;
 
-import com.datasphere.government.gsp.datalineage.util.Pair;
+import com.datasphere.government.datalineage.gsp.util.Pair;
 
 public class column
 {
