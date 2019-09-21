@@ -16,6 +16,9 @@ package com.datasphere.government.datalineage.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.datasphere.government.common.BaseController;
 import com.datasphere.government.datalineage.common.DBConstant;
@@ -44,8 +47,9 @@ public class FileController extends BaseController{
      * @param file
      * @return
      */
-    @Post(value = BATH_PATH+"/upload", produces = "text/json;charset=utf-8", consumes = MediaType.MULTIPART_FORM_DATA)
-    public HttpResponse<Object> uploadCompleted(CompletedFileUpload file, @Parameter String dbType) {
+//    @Post(value = BATH_PATH+"/upload", produces = "text/json;charset=utf-8", consumes = MediaType.MULTIPART_FORM_DATA)
+    @RequestMapping(value = BATH_PATH+"/upload", produces = "text/json;charset=utf-8", consumes = MediaType.MULTIPART_FORM_DATA)
+    public HttpResponse<Object> uploadCompleted(CompletedFileUpload file, @RequestParam String dbType) {
         try {
             String fileName = file.getFilename();
             String fileRelativePath = null;

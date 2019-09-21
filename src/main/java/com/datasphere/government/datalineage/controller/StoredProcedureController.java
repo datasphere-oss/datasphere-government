@@ -46,7 +46,7 @@ public class StoredProcedureController extends BaseController {
     }
 
     @Post(value = BATH_PATH+"/listAll2")
-    public Map<String, Object> listAllStoredProcedure(@Body ConnectEntity connectEntity) {
+    public Map<String, Object> listAllStoredProcedure(@RequestBody ConnectEntity connectEntity) {
         try {
             if (null == connectEntity) return JsonWrapper.failureWrapper(-1, "连接信息不能为空！");
             List<String> list = storedProcedureService.listAllStoredProcedure(connectEntity);

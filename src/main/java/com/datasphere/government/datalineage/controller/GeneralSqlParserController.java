@@ -35,8 +35,8 @@ public class GeneralSqlParserController extends BaseController {
     @Autowired
     GeneralSqlParserService generalSqlParserService;
 
-    @Get("/parser")
-    public Single<Object> getAll() {//@Body ConnectEntity connectEntity
+    @RequestMapping("/parser")
+    public Single<Object> getAll() {//@RequestBody ConnectEntity connectEntity
         return Single.fromCallable(() -> {
             try {
                 JSONArray jsonArray = generalSqlParserService.getAll();
@@ -56,7 +56,7 @@ public class GeneralSqlParserController extends BaseController {
      * @return
      */
     @Post(value = "/parserMoreByFileName", produces = "text/json;charset=utf-8")
-    public Single<Object> getMoreByFileName(@Parameter String dbType, @Parameter String fileName) {//@Body ConnectEntity connectEntity,
+    public Single<Object> getMoreByFileName(@RequestParam String dbType, @RequestParam String fileName) {//@RequestBody ConnectEntity connectEntity,
         return Single.fromCallable(() -> {
             try {
                 if (StringUtils.isBlank(dbType) || StringUtils.isBlank(fileName)) {
@@ -87,7 +87,7 @@ public class GeneralSqlParserController extends BaseController {
      * @return
      */
     @Post("/parserByProName")
-    public Single<Object> getByProName(@Parameter String proname) {
+    public Single<Object> getByProName(@RequestParam String proname) {
         return Single.fromCallable(() -> {
             try {
                 JSONArray jsonArray = generalSqlParserService.getByProName(proname);
