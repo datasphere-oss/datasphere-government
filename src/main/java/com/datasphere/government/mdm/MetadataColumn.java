@@ -36,8 +36,8 @@ import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
-import com.datasphere.server.domain.CollectionPatch;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.CollectionPatch;
+import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
@@ -76,7 +76,7 @@ public class MetadataColumn implements DSSDomain<Long>  {
 
 
   /**
-   * The type of column
+   * The logical type of column
    */
   @Column(name = "column_type")
   @Enumerated(EnumType.STRING)
@@ -257,7 +257,9 @@ public class MetadataColumn implements DSSDomain<Long>  {
       this.additionalContext = GlobalObjectMapper.writeValueAsString(additionalContextMap);
     }
   }
-
+  /*
+   * 更新列
+   */
   public void updateColumn(Field field) {
     this.name = field.getLogicalName();
     this.type = field.getLogicalType();
