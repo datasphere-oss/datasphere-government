@@ -31,8 +31,8 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.government.mdm.catalog.Catalog;
 import com.datasphere.government.mdm.source.MetadataSource;
 import com.datasphere.server.datasource.DataSource;
@@ -65,7 +65,8 @@ public class Metadata extends AbstractHistoryEntity implements DSSDomain<String>
   @Column(name = "meta_desc", length = 1000)
   @Size(max = 900)
   private String description;
-
+  
+  // 元数据类型
   @Column(name = "meta_source_type")
   @Enumerated(EnumType.STRING)
   private SourceType sourceType;
@@ -84,6 +85,7 @@ public class Metadata extends AbstractHistoryEntity implements DSSDomain<String>
 
   /**
    * Linked catalog
+   * 元数据目录
    */
   @ManyToMany(cascade = {CascadeType.MERGE})
   @JoinTable(name = "catalog_metadata",
@@ -92,6 +94,7 @@ public class Metadata extends AbstractHistoryEntity implements DSSDomain<String>
   @BatchSize(size = 50)
   private List<Catalog> catalogs;
 
+  // 标签
   @Transient
   List<String> tags;
 
@@ -255,7 +258,10 @@ public class Metadata extends AbstractHistoryEntity implements DSSDomain<String>
         ", sourceType=" + sourceType +
         "} " + super.toString();
   }
-
+  /**
+   * 数据源类型分为以下4种
+   * STAGEDB一般为ODS层
+   */
   public enum SourceType {
     ENGINE, JDBC, STAGEDB, ETC
   }
