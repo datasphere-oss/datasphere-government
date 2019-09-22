@@ -85,7 +85,7 @@ public class MetadataEventHandler {
       }
 
       if (CollectionUtils.isNotEmpty(metadata.getColumns())) {
-        // 전달 받은 Column 정보와 실제 데이터 소스내 데이터가 일치하는지 확인
+        // Check if the column information and the data in the actual data source match
         Map<String, Field> metaFieldMap = originalDataSource.getMetaFieldMap();
         for (MetadataColumn metadataColumn : metadata.getColumns()) {
           String physicalName = metadataColumn.getPhysicalName();
