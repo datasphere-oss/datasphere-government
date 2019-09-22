@@ -29,8 +29,8 @@ import java.util.stream.Collectors;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.DSSDomain;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.server.common.domain.DSSDomain;
 
 @Entity
 @Table(name = "mdm_code_table")
@@ -61,13 +61,16 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
   String description;
 
   /**
-   * 데이터 소스 필드 정보
+   * About data source fields
    */
   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   @JoinColumn(name = "table_id", referencedColumnName = "id")
   @BatchSize(size = 50)
   List<CodeValuePair> codes;
 
+  /**
+   * 数据字典
+   */
   @OneToMany(mappedBy = "codeTable", cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH })
   @OrderBy("logicalName ASC")
   @BatchSize(size = 50)
@@ -100,7 +103,7 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
     return codes.stream()
                 .collect(Collectors.toMap(CodeValuePair::getId, code -> code));
   }
-
+  // 添加代码
   public void addCode(CodeValuePair codeValuePair) {
     if(this.codes == null) {
       this.codes = Lists.newArrayList();
@@ -108,7 +111,7 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
 
     this.codes.add(codeValuePair);
   }
-
+  // 删除代码
   public void removeCode(CodeValuePair codeValuePair) {
     if(this.codes == null) {
       return;
@@ -116,7 +119,7 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
 
     this.codes.remove(codeValuePair);
   }
-
+  // 添加元数据列
   public void addColumn(MetadataColumn column) {
     if(this.columns == null) {
       this.columns = Lists.newArrayList();
@@ -124,7 +127,7 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
 
     this.columns.add(column);
   }
-
+  //删除元数据列
   public void removeColumn(MetadataColumn column) {
     if(this.columns == null) {
       return;
@@ -165,11 +168,11 @@ public class CodeTable extends AbstractHistoryEntity implements DSSDomain<String
   public void setCodes(List<CodeValuePair> codes) {
     this.codes = codes;
   }
-
+  //获取字典
   public List<ColumnDictionary> getDictionaries() {
     return dictionaries;
   }
-
+  // 设置字典
   public void setDictionaries(List<ColumnDictionary> dictionaries) {
     this.dictionaries = dictionaries;
   }
