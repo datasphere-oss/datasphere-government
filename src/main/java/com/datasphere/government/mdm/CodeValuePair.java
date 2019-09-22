@@ -23,7 +23,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.datasphere.server.domain.CollectionPatch;
+import com.datasphere.server.common.domain.CollectionPatch;
 
 @Entity
 @Table(name = "mdm_code_value_pair")
