@@ -27,12 +27,12 @@ import java.util.List;
 public class MetadataPredicate {
 
   /**
-   * 기본 목록 조회 옵션 지정
+   * Specify default list query options
    *
-   * @param nameContains 컬럼 명 내 포함되는 문자
-   * @param searchDateBy 일자 검색 기준 (생성일/수정일)
-   * @param from 검색 시작일자, yyyy-MM-ddThh:mm:ss.SSSZ
-   * @param to 검색 종료일자, yyyy-MM-ddThh:mm:ss.SSSZ
+   * @param nameContains The characters contained in the column name
+   * @param searchDateBy Date search criteria (creation date / modification date)
+   * @param from Search start date, yyyy-MM-ddThh:mm:ss.SSSZ
+   * @param to Search end date, yyyy-MM-ddThh:mm:ss.SSSZ
    * @return
    */
   public static Predicate searchList(Metadata.SourceType sourceType, String catalogId, List<String> subCatalogIds, String nameContains,
