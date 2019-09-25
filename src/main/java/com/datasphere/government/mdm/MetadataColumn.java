@@ -41,6 +41,8 @@ import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.server.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
+import com.datasphere.server.common.datasource.LogicalType;
+
 @Entity
 @Table(name = "mdm_metadata_column")
 public class MetadataColumn implements DSSDomain<Long>  {
