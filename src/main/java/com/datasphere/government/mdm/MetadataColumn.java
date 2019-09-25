@@ -38,7 +38,7 @@ import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
 import com.datasphere.server.domain.workbook.CollectionPatch;
 import com.datasphere.server.common.domain.DSSDomain;
-import com.datasphere.datasource.Field;
+import com.datasphere.common.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 import com.datasphere.server.common.datasource.LogicalType;

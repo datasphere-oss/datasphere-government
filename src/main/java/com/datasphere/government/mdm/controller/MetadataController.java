@@ -50,7 +50,7 @@ import com.datasphere.government.mdm.MetadataColumnProjections;
 import com.datasphere.government.mdm.MetadataPopularityRepository;
 import com.datasphere.government.mdm.MetadataProjections;
 import com.datasphere.government.mdm.MetadataRepository;
-import com.datasphere.government.mdm.MetadataService;
+import com.datasphere.government.mdm.service.MetadataService;
 import com.datasphere.server.common.entity.DomainType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.exception.ResourceNotFoundException;
