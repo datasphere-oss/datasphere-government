@@ -30,8 +30,8 @@ import com.datasphere.server.connections.jdbc.accessor.JdbcAccessor;
 import com.datasphere.server.connections.jdbc.dialect.JdbcDialect;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionErrorCodes;
 import com.datasphere.server.connections.jdbc.exception.JdbcDataConnectionException;
-import com.datasphere.server.domain.dataconnection.DataConnectionHelper;
-import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.datasource.connections.DataConnectionHelper;
+import com.datasphere.government.mdm.Metadata;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**

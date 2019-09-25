@@ -14,7 +14,7 @@
 
 package com.datasphere.government.mdm.preview;
 
-import static com.datasphere.server.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
+import static com.datasphere.datasource.Field.COLUMN_NAME_CURRENT_DATETIME;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,9 +30,9 @@ import com.datasphere.common.data.DataHistogram;
 import com.datasphere.common.data.Row;
 import com.datasphere.server.common.GlobalObjectMapper;
 import com.datasphere.server.common.datasource.DataType;
-import com.datasphere.server.datasource.Field;
-import com.datasphere.server.domain.mdm.Metadata;
-import com.datasphere.server.domain.mdm.MetadataColumn;
+import com.datasphere.datasource.Field;
+import com.datasphere.government.mdm.Metadata;
+import com.datasphere.government.mdm.MetadataColumn;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

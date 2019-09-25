@@ -23,11 +23,11 @@ import org.slf4j.LoggerFactory;
 
 import com.datasphere.common.data.ColumnDescription;
 import com.datasphere.common.data.Row;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.data.SearchQueryRequest;
-import com.datasphere.server.datasource.data.result.ObjectResultFormat;
+import com.datasphere.datasource.DataSource;
+import com.datasphere.datasource.data.SearchQueryRequest;
+import com.datasphere.datasource.data.result.ObjectResultFormat;
 import com.datasphere.server.domain.engine.EngineQueryService;
-import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.government.mdm.Metadata;
 import com.datasphere.server.domain.workbook.configurations.Limit;
 import com.datasphere.server.domain.workbook.configurations.datasource.DefaultDataSource;
 import com.fasterxml.jackson.annotation.JsonIgnore;

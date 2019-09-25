@@ -35,8 +35,8 @@ import com.datasphere.server.common.domain.AbstractHistoryEntity;
 import com.datasphere.server.common.domain.DSSDomain;
 import com.datasphere.government.mdm.catalog.Catalog;
 import com.datasphere.government.mdm.source.MetadataSource;
-import com.datasphere.server.datasource.DataSource;
-import com.datasphere.server.datasource.Field;
+import com.datasphere.datasource.DataSource;
+import com.datasphere.datasource.Field;
 
 @Entity
 @Table(name="mdm_metadata")

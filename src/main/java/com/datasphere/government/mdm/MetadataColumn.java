@@ -36,9 +36,9 @@ import com.datasphere.server.common.KeepAsJsonDeserialzier;
 import com.datasphere.server.common.datasource.LogicalType;
 import com.datasphere.server.common.entity.SearchParamValidator;
 import com.datasphere.server.common.entity.Spec;
-import com.datasphere.server.common.domain.CollectionPatch;
+import com.datasphere.server.domain.workbook.CollectionPatch;
 import com.datasphere.server.common.domain.DSSDomain;
-import com.datasphere.server.datasource.Field;
+import com.datasphere.datasource.Field;
 import com.datasphere.server.domain.workbook.configurations.format.FieldFormat;
 
 import com.datasphere.server.common.datasource.LogicalType;

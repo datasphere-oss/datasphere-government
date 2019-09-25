@@ -30,8 +30,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.datasphere.server.common.KeepAsJsonDeserialzier;
-import com.datasphere.server.domain.AbstractHistoryEntity;
-import com.datasphere.server.domain.mdm.Metadata;
+import com.datasphere.server.common.domain.AbstractHistoryEntity;
+import com.datasphere.government.mdm.Metadata;
 
 @Entity
 @Table(name = "mdm_metadata_source")
