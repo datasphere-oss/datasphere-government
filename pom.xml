@@ -147,7 +147,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.3</version>
+            <version>4.5.13</version>
         </dependency>
        <!-- Spring Context Support (Email feature / Quartz use) -->
 		<dependency>
@@ -754,7 +754,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>4.5.13</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>commons-logging</artifactId>
